@@ -75,15 +75,25 @@ function Menu(){
         <div className="menu">
 
             <h2>Our Menu</h2>
+
             
             {numPizzza > 0 ?(
+              <React.Fragment>
+
+              <p>Authentic Italian cuisine, six creative dishes to choose from. All from our stone oven, all organinc and delicious.</p>
+
             <ul className="pizzas"> 
               {pizzaData.map((pizza) => (
               <Pizza pizzaObj={pizza} key={pizza.name}/>)
               
             )} 
-            </ul>) 
-            : (<p>We are working on our menu please visit us later :)</p>)
+            </ul>
+            </React.Fragment>) 
+            : (<React.Fragment>
+            <p>We currently have no pizza in the stock please visit us later or check the website daily.  Sorry for inconvinience</p>
+            <p>We are working on our menu please visit us later :)</p>
+            
+            </React.Fragment>)
             }
             
             {/* <Pizza 
@@ -96,15 +106,15 @@ function Menu(){
     )
 }
 
-function Pizza(props){
-  console.log(props)
+function Pizza({pizzaObj}){
+
   return(
   <li className="pizza">
-    <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+    <img src={pizzaObj.photoName} alt={pizzaObj.name} />
     <div className="pizzas">
-       <h3>{props.pizzaObj.name}</h3>
-       <p>{props.pizzaObj.ingredients}</p>
-       <span>{props.pizzaObj.price + "$"}</span>
+       <h3>{pizzaObj.name}</h3>
+       <p>{pizzaObj.ingredients}</p>
+       <span>{pizzaObj.price + "$"}</span>
     </div>
 
     
