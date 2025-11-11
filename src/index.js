@@ -61,7 +61,7 @@ function App() {
 
 function Header() {
     return(<header className="header">
-      <h1 >Fast React Pizza Co.</h1>
+      <h1 >OMNIDOSE Pizza Co.</h1>
     </header>) 
 }
 
@@ -109,12 +109,12 @@ function Menu(){
 function Pizza({pizzaObj}){
 
   return(
-  <li className="pizza">
+  <li className={`pizza ${pizzaObj.soldOut ? `sold-out` : `pizza`}`}>
     <img src={pizzaObj.photoName} alt={pizzaObj.name} />
     <div className="pizzas">
        <h3>{pizzaObj.name}</h3>
        <p>{pizzaObj.ingredients}</p>
-       <span>{pizzaObj.price + "$"}</span>
+       <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price + "$"}</span>
     </div>
 
     
