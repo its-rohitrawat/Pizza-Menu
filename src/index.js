@@ -66,28 +66,31 @@ function Header() {
 }
 
 function Menu(){
+
+  let pizzas = pizzaData;
+  // let pizzas = [];
+  let numPizzza = pizzas.length;
+
     return(
         <div className="menu">
+
             <h2>Our Menu</h2>
-
-
-            <ul className="pizzas"> {pizzaData.map((pizza) => (
-              <Pizza pizzaObj={pizza} key={pizza.name}/>  
-              // key helps React optimize performance and maintain list integrity during updates. It is recommended to use a property like the pizza name as the key.
-            ))} 
-            </ul>
+            
+            {numPizzza > 0 ?(
+            <ul className="pizzas"> 
+              {pizzaData.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name}/>)
+              
+            )} 
+            </ul>) 
+            : (<p>We are working on our menu please visit us later :)</p>)
+            }
+            
             {/* <Pizza 
             name="Focaccia" 
             ingredients="Bread with italian olive oil and rosemary" 
             imageName="pizzas/focaccia.jpg" 
             price={10}
-            />
-
-            <Pizza
-             name="Margherita" 
-             ingredients="Tomato and mozerilla" 
-             imageName="pizzas\margherita.jpg" 
-             price={14}
             /> */}     
         </div>
     )
@@ -110,15 +113,25 @@ function Pizza(props){
 }
 
 function Footer(){
-    // let hour = new Date().getHours()
-    // let openHour = 10
-    // let closeHour  = 22
-    // let isOpen = hour >= openHour && hour <= closeHour
-    // if(hour >= openHour && hour <= closeHour)  alert("we are currently open!")
-    // else   alert("we are now clsoed!")
-    
+    let hour = new Date().getHours()
+    let openHour = 10
+    let closeHour  = 22
+    let isOpen = hour >= openHour && hour <= closeHour;
+    console.log(isOpen);
 
-    return <footer className="footer">{new Date().toLocaleTimeString()} We are currently open!</footer>
+    return ( 
+    <footer className="footer">
+      <div className="order">
+
+        {isOpen 
+      ? <p>We're currently open until {closeHour}:00. Come visit us or Order online. </p> //used a ternery operator! 
+      : <p>We're currently closed. We'll open at {openHour}:00. Come vist us or Order online.</p> 
+      }
+
+      <button className="btn">Order</button>
+      </div>
+      
+      </footer>)
 }
 
 
